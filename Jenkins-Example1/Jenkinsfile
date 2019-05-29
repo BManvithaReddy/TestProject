@@ -1,33 +1,30 @@
-pipeline{
-agent any
-
-Stages{
-   stage('Compiled Stage'){
-   steps{
+pipeline {
+    agent any
+    stages {
+        stage('One') {
+                steps {
+                        echo 'Hi, this is Zulaikha from edureka'
+			
+                }
+        }
+	    stage('Two'){
+		    
+		steps {
+			input('Do you want to proceed?')
+        }
+	    }
+        stage('Three') {
+                when {
+                        not {
+                                branch "master"
+                        }
+                }
+                steps {
+			echo "Hello"
+                        }
+        }
         
-        sh 'maven clean compile'
-        
-  }
-  }
-  
-  stage('Testing Stage'){
-  steps{
-        
-        sh 'maven test'
-        
-  }
-  
-  }
-  
-  stage('Deployment Stage'){
-  steps{
-        
-        sh 'maven deploy'
-        
-  }
-  
-  }
-
-}
-
-}
+                               
+			}  }
+       
+    
